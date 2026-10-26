@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Nodir Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="background">
+    <div class="blur blur1"></div>
+    <div class="blur blur2"></div>
+    <div class="blur blur3"></div>
+</div>
+
+<header>
+    <div class="logo">
+        <h1>NODIR HUB</h1>
+        <p>Everything in One Place</p>
+    </div>
+
+    <div class="clock">
+        <span id="time">00:00:00</span>
+        <span id="date">Loading...</span>
+    </div>
+</header>
+
+<main>
+
+    <!-- Dashboard Stats -->
+    <section class="stats">
+        <div class="stat-box">
+            <h2 id="notesCount">0</h2>
+            <p>Notes</p>
+        </div>
+        <div class="stat-box">
+            <h2 id="openCount">0</h2>
+            <p>Launches</p>
+        </div>
+        <div class="stat-box">
+            <h2 id="levelCount">1</h2>
+            <p>Level</p>
+        </div>
+        <div class="stat-box">
+            <h2 id="versionText">1.2</h2>
+            <p>Version</p>
+        </div>
+    </section>
+
+    <section class="welcome">
+        <h2>Welcome Back 👋</h2>
+        <p>Your personal dashboard is ready. Choose any tool below.</p>
+    </section>
+
+    <section class="cards">
+
+        <div class="card" id="notes">
+            <div class="icon">📝</div>
+            <h3>Notes</h3>
+            <p>Create and save notes.</p>
+        </div>
+
+        <div class="card" id="calculator">
+            <div class="icon">🧮</div>
+            <h3>Calculator</h3>
+            <p>Fast calculator.</p>
+        </div>
+
+        <div class="card" id="weather">
+            <div class="icon">⛅</div>
+            <h3>Weather</h3>
+            <p>Live weather by city.</p>
+        </div>
+
+        <div class="card" id="news">
+            <div class="icon">📰</div>
+            <h3>News Feed</h3>
+            <p>Latest headlines.</p>
+        </div>
+
+        <div class="card" id="stocks">
+            <div class="icon">📈</div>
+            <h3>Stocks</h3>
+            <p>Track stock prices.</p>
+        </div>
+
+        <div class="card" id="music">
+            <div class="icon">🎵</div>
+            <h3>Music Player</h3>
+            <p>Play your own tracks.</p>
+        </div>
+
+        <div class="card" id="games">
+            <div class="icon">🎮</div>
+            <h3>Games</h3>
+            <p>Mini games &amp; Sudoku.</p>
+        </div>
+
+        <div class="card" id="profile">
+            <div class="icon">👤</div>
+            <h3>Profile</h3>
+            <p>Your account.</p>
+        </div>
+
+        <div class="card" id="settings">
+            <div class="icon">⚙️</div>
+            <h3>Settings</h3>
+            <p>Customize Hub.</p>
+        </div>
+
+        <div class="card" id="about">
+            <div class="icon">ℹ️</div>
+            <h3>About</h3>
+            <p>About Nodir Hub.</p>
+        </div>
+
+    </section>
+
+</main>
+
+<!-- NOTES -->
+<div class="modal" id="notesModal">
+    <div class="modal-box">
+        <h2>📝 Notes</h2>
+        <textarea id="noteArea" placeholder="Write something..."></textarea>
+        <div class="modal-buttons">
+            <button id="saveNote">Save</button>
+            <button id="deleteNote" class="btn-danger">Delete</button>
+            <button id="downloadNote" class="btn-secondary">Download</button>
+            <button class="closeModal">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- CALCULATOR -->
+<div class="modal" id="calculatorModal">
+    <div class="modal-box modal-box-sm">
+        <h2>🧮 Calculator</h2>
+        <input type="text" id="calcDisplay" readonly>
+        <div class="calculator">
+            <button>7</button><button>8</button><button>9</button><button>/</button>
+            <button>4</button><button>5</button><button>6</button><button>*</button>
+            <button>1</button><button>2</button><button>3</button><button>-</button>
+            <button>0</button><button>.</button><button>=</button><button>+</button>
+            <button class="clear">C</button>
+        </div>
+        <div class="modal-buttons">
+            <button class="closeModal">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- WEATHER -->
+<div class="modal" id="weatherModal">
+    <div class="modal-box modal-box-sm">
+        <h2>⛅ Weather</h2>
+
+        <div id="weatherSetup">
+            <p class="hint">Enter your free OpenWeatherMap API key (saved locally in your browser only).</p>
+            <input type="text" id="weatherApiKey" placeholder="OpenWeatherMap API key">
+            <div class="modal-buttons modal-buttons-start">
+                <button id="saveWeatherKey">Save Key</button>
+            </div>
+        </div>
+
+        <div id="weatherApp" class="hidden">
+            <div class="weather-search">
+                <input type="text" id="cityInput" placeholder="City name (e.g. Tashkent)">
+                <button id="getWeather">Search</button>
+                <button id="useLocation" class="btn-secondary" title="Use my location">📍</button>
+            </div>
+
+            <div id="weatherResult" class="weather-result hidden">
+                <div class="weather-main">
+                    <img id="weatherIcon" src="" alt="">
+                    <div>
+                        <h2 id="weatherTemp">--°C</h2>
+                        <p id="weatherCity">--</p>
+                    </div>
+                </div>
+                <p id="weatherDesc" class="weather-desc">--</p>
+                <div class="weather-details">
+                    <span id="weatherFeels">Feels like: --</span>
+                    <span id="weatherHumidity">Humidity: --</span>
+                    <span id="weatherWind">Wind: --</span>
+                </div>
+            </div>
+
+            <p id="weatherError" class="weather-error hidden"></p>
+            <button id="changeWeatherKey" class="btn-link">Change API key</button>
+        </div>
+
+        <div class="modal-buttons">
+            <button class="closeModal">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- SETTINGS -->
+<div class="modal" id="settingsModal">
+    <div class="modal-box modal-box-sm">
+        <h2>⚙ Settings</h2>
+
+        <label class="switch-row"><input type="checkbox" id="darkSwitch"> Dark Mode</label>
+        <label class="switch-row"><input type="checkbox" id="animSwitch" checked> Animations</label>
+        <label class="switch-row"><input type="checkbox" id="soundSwitch"> Sounds</label>
+
+        <div class="modal-buttons">
+            <button class="closeModal">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- PROFILE -->
+<div class="modal" id="profileModal">
+    <div class="modal-box modal-box-sm">
+        <h2>👤 Profile</h2>
+        <h3>Nodir</h3>
+        <p>Developer of Nodir Hub</p>
+        <p id="profileLevel">Level 1 &middot; 0 XP</p>
+        <div class="modal-buttons">
+            <button class="closeModal">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- GAMES -->
+<div class="modal" id="gamesModal">
+    <div class="modal-box">
+        <h2>🎮 Games Center</h2>
+
+        <div id="gamesMenu">
+            <p>Select a game</p>
+            <div class="games-grid">
+                <button id="snakeGame">🐍 Snake</button>
+                <button id="ticTacToeGame">❌⭕ Tic-Tac-Toe</button>
+                <button id="memoryGame">🧠 Memory</button>
+                <button id="sudokuGame">🔢 Sudoku</button>
+            </div>
+        </div>
+
+        <div id="gameArea" class="hidden">
+            <button id="backToGames" class="btn-secondary">← Back</button>
+            <div id="gameContent"></div>
+        </div>
+
+        <div class="modal-buttons">
+            <button class="closeModal">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- NEWS -->
+<div class="modal" id="newsModal">
+    <div class="modal-box">
+        <h2>📰 News Feed</h2>
+
+        <div id="newsSetup">
+            <p class="hint">Enter your free GNews API key (gnews.io) — saved locally in your browser only.</p>
+            <input type="text" id="newsApiKey" placeholder="GNews API key">
+            <div class="modal-buttons modal-buttons-start">
+                <button id="saveNewsKey">Save Key</button>
+            </div>
+        </div>
+
+        <div id="newsApp" class="hidden">
+            <div class="weather-search">
+                <input type="text" id="newsQuery" placeholder="Topic (e.g. technology, sports)">
+                <button id="getNews">Search</button>
+            </div>
+            <div id="newsList" class="news-list"></div>
+            <p id="newsError" class="weather-error hidden"></p>
+            <button id="changeNewsKey" class="btn-link">Change API key</button>
+        </div>
+
+        <div class="modal-buttons">
+            <button class="closeModal">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- STOCKS -->
+<div class="modal" id="stocksModal">
+    <div class="modal-box">
+        <h2>📈 Stock Tracker</h2>
+
+        <div id="stocksSetup">
+            <p class="hint">Enter your free Finnhub API key (finnhub.io) — saved locally in your browser only.</p>
+            <input type="text" id="stocksApiKey" placeholder="Finnhub API key">
+            <div class="modal-buttons modal-buttons-start">
+                <button id="saveStocksKey">Save Key</button>
+            </div>
+        </div>
+
+        <div id="stocksApp" class="hidden">
+            <div class="weather-search">
+                <input type="text" id="stockSymbol" placeholder="Symbol (e.g. AAPL)">
+                <button id="addStock">Track</button>
+                <button id="refreshStocks" class="btn-secondary" title="Refresh">🔄</button>
+            </div>
+            <div id="stocksList" class="stocks-list"></div>
+            <p id="stocksError" class="weather-error hidden"></p>
+            <button id="changeStocksKey" class="btn-link">Change API key</button>
+        </div>
+
+        <div class="modal-buttons">
+            <button class="closeModal">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- MUSIC PLAYER -->
+<div class="modal" id="musicModal">
+    <div class="modal-box modal-box-sm">
+        <h2>🎵 Music Player</h2>
+
+        <input type="file" id="musicFiles" accept="audio/*" multiple>
+        <p class="hint">Add your own audio files — they play locally and are never uploaded anywhere.</p>
+
+        <div class="music-now">
+            <p id="nowPlaying">No track loaded</p>
+            <audio id="audioPlayer"></audio>
+            <input type="range" id="seekBar" value="0" min="0" max="100" step="0.1">
+        </div>
+
+        <div class="music-controls">
+            <button id="prevTrack" class="btn-secondary">⏮</button>
+            <button id="playPauseTrack">▶ Play</button>
+            <button id="nextTrack" class="btn-secondary">⏭</button>
+        </div>
+
+        <div class="music-volume">
+            <span>🔊</span>
+            <input type="range" id="volumeBar" min="0" max="1" step="0.01" value="1">
+        </div>
+
+        <div id="playlist" class="playlist"></div>
+
+        <div class="modal-buttons">
+            <button class="closeModal">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<div class="modal" id="aboutModal">
+    <div class="modal-box modal-box-sm">
+        <h2>ℹ️ About Nodir Hub</h2>
+        <p><strong>Nodir Hub</strong></p>
+        <p>Version 1.2</p>
+        <p>Created with HTML, CSS &amp; JavaScript</p>
+        <p>Developer: Nodir</p>
+        <button class="closeModal">Close</button>
+    </div>
+</div>
+
+<footer>
+    <p>Nodir Hub v1.2 • Made with HTML CSS JavaScript</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
